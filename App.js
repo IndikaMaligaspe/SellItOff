@@ -1,21 +1,37 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, SafeAreaView} from 'react-native';
+import {useDimensions, useDeviceOrientation} from '@react-native-community/hooks'
 
+import WelcomeScreen from './app/Screens/WelcomeScreen';
+import ViewImageScreen from './app/Screens/ViewImageScreen';
+// import LoginText from './app/components/Button/Button';
+import ProductListScreen from './app/Screens/ProductListScreen'
+
+let orientation = false
 export default function App() {
+  orientation = useDeviceOrientation()
+  const dimenssion = useDimensions()
+  const handlePress = () => console.log("Text pressed")
+  console.log(orientation)
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.container}>
+      {/* <LoginText>LOGIN</LoginText>       */}
+      {/* <ViewImageScreen></ViewImageScreen> */}
+      {/* <WelcomeScreen></WelcomeScreen> */}
+      <ProductListScreen></ProductListScreen>
+    </SafeAreaView>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    // width:'100%',
+    // height:'100%',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#fff',
   },
 });
