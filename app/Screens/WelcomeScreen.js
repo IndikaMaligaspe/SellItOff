@@ -2,7 +2,7 @@ import React from 'react'
 import { View, ImageBackground, Image, StyleSheet, Text } from 'react-native'
 
 import colors from '../configs/colors'
-import Button from '../components/Button/Button'
+import AppButton from '../components/AppComponents/AppButton'
 
 export default function WelcomeScreen() {
     return (
@@ -11,14 +11,27 @@ export default function WelcomeScreen() {
                 //  blurRadius='5'
                  source={require('../assets/background.jpg')}>
             <View style={styles.logoView}>
-               <Image resizeMode="center" style={styles.logo} source={require('../assets/logo-red.png')}></Image>
+               <Image 
+               resizeMode="center" 
+               style={styles.logo} 
+               source={require('../assets/logo-red.png')} />
                <Text style={styles.logoText}>Sell what you Don't Need</Text>   
             </View>  
             <View style={styles.signIn}>
-                <Button color={colors.secondary}>LOGIN</Button>
+                <AppButton 
+                    color={colors.secondary}
+                    textColor={colors.lightBackground}
+                    title="login"
+                    onPress={()=> console.log("Clicked")}
+                 />
             </View>
             <View style={styles.signUp}>
-                <Button color={colors.primary}>REGISTER</Button>
+                <AppButton 
+                    color={colors.primary} 
+                    textColor={colors.lightBackground}
+                    title="register"
+                    onPress={()=> console.log("Clicked")}/>
+                
             </View>
         </ImageBackground>
     )

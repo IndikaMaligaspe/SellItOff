@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     layout: {
         flex:1,
         padding:20,
+        marginTop:50,
         backgroundColor: '#f8f4f4',
         alignItems:'flex-start',   
         justifyContent:'flex-start',

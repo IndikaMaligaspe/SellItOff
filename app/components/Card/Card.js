@@ -1,6 +1,8 @@
 import React from 'react'
 import { StyleSheet, Text, View, Image } from 'react-native'
 
+import AppText from '../AppComponents/AppText'
+
 import colors from '../../configs/colors'
 
 function Card(props) {
@@ -10,8 +12,10 @@ function Card(props) {
                 source={props.image} 
                 // resizeMode='contain' 
             />
-            <Text style={styles.title}>{props.title}</Text>
-            <Text style={styles.subtitle}>{props.subtitle}</Text>
+            <View style={styles.textContainer}>
+                <AppText style={styles.title}>{props.title}</AppText>
+                <AppText style={styles.subtitle}>{props.subtitle}</AppText>
+            </View>
         </View>
     )
 }
@@ -19,30 +23,25 @@ function Card(props) {
 const styles = StyleSheet.create({
     container:{
         backgroundColor:colors.lightBackground,
-        marginTop:50,
-        borderRadius:20,
         width:350,
-        height:350,
+        borderRadius:20,
+        overflow:'hidden',
     },
     image:{
         width:'100%',
-        height:'70%',
-        borderTopLeftRadius:20,
-        borderTopRightRadius:20,
-        marginTop:0,
+        height:200,
     },
     subtitle:{
         color:colors.primary,
         fontSize:20,
         fontWeight:'bold',
+    },
+    textContainer:{
         marginLeft:20,
-        marginTop:5,
+        paddingVertical:15,
     },
     title:{
-        fontSize:20,
-        fontWeight:'bold',
-        marginLeft:20,
-        marginTop:20,
+        marginBottom:7,
     }
 })
 export default Card
