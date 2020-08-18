@@ -1,20 +1,22 @@
 import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet, TouchableHighlight } from 'react-native';
 
 import AppText from '../AppComponents/AppText'
 
 export default function componentName(props) {
   return (
-    <View style={styles.container}>
-    <Image 
-        source={props.image}
-        style={styles.image}
-    />
-    <View style={styles.imageTextContainer}>
-        <AppText style={styles.nameText}>{props.title}</AppText>
-        <AppText style={styles.listingsText}>{props.subtitle}</AppText>
-    </View>
-</View>
+   <TouchableHighlight onPress={()=>console.log()}>   
+        <View style={styles.container}>
+            <Image 
+                source={props.image}
+                style={styles.image}
+            />
+            <View style={styles.imageTextContainer}>
+                <AppText style={styles.nameText}>{props.title}</AppText>
+                <AppText style={styles.listingsText}>{props.subtitle}</AppText>
+            </View>
+        </View>
+    </TouchableHighlight>
   );
 }
 

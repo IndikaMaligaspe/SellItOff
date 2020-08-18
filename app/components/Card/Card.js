@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableHighlight } from 'react-native'
 
 import AppText from '../AppComponents/AppText'
 
@@ -7,16 +7,20 @@ import colors from '../../configs/colors'
 
 function Card(props) {
     return (
-        <View style={styles.container}>
-            <Image style={styles.image}
-                source={props.image} 
-                // resizeMode='contain' 
-            />
-            <View style={styles.textContainer}>
-                <AppText style={styles.title}>{props.title}</AppText>
-                <AppText style={styles.subtitle}>{props.subtitle}</AppText>
+        <TouchableHighlight 
+            underlayColor={colors.lightBackground}
+            onPress={props.onPress}>
+            <View style={styles.container}>
+                <Image style={styles.image}
+                    source={props.image} 
+                    // resizeMode='contain' 
+                />
+                <View style={styles.textContainer}>
+                    <AppText style={styles.title}>{props.title}</AppText>
+                    <AppText style={styles.subtitle}>{props.subtitle}</AppText>
+                </View>
             </View>
-        </View>
+        </TouchableHighlight>
     )
 }
 
