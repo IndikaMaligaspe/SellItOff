@@ -4,10 +4,11 @@ import { StyleSheet, SafeAreaView, Text} from 'react-native';
 import {useDimensions, useDeviceOrientation} from '@react-native-community/hooks'
 
 import WelcomeScreen from './app/Screens/WelcomeScreen';
-// import ViewImageScreen from './app/Screens/ViewImageScreen';
-// import AppButton from './app/components/Buttons/AppButton';
+import ViewImageScreen from './app/Screens/ViewImageScreen';
 import ProductListScreen from './app/Screens/ProductListScreen'
-// import ListingDetailsScreen from './app/Screens/ListingDetailsScreen'
+import ListingDetailsScreen from './app/Screens/ListingDetailsScreen'
+import MessagesScreen from './app/Screens/MessagesScreen'
+import AccountScreen from './app/Screens/AccountScreen'
 import colors from './app/configs/colors';
 
 let orientation = false
@@ -20,11 +21,12 @@ export default function App() {
     // <SafeAreaView style={styles.container}>
       
       
-      // {/* <ViewImageScreen></ViewImageScreen> */}
-      // {/* <WelcomeScreen></WelcomeScreen> */}
-      <ProductListScreen></ProductListScreen>
-      // {/* <ListingDetailsScreen></ListingDetailsScreen> */}
-    
+      // <ViewImageScreen />
+      // <WelcomeScreen />
+      // <ProductListScreen />
+      // <ListingDetailsScreen />
+      // <MessagesScreen />
+      <AccountScreen />
     // </SafeAreaView>
   );
 }

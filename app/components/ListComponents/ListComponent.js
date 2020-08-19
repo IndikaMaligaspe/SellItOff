@@ -2,18 +2,21 @@ import React from 'react';
 import { View, Image, StyleSheet, TouchableHighlight } from 'react-native';
 
 import AppText from '../AppComponents/AppText'
+import colors from '../../configs/colors';
+import IconComponent from '../AppComponents/IconComponent';
 
 export default function componentName(props) {
   return (
-   <TouchableHighlight onPress={()=>console.log()}>   
+   <TouchableHighlight underlayColor={colors.lightBackground} onPress={props.onPress}>   
         <View style={styles.container}>
-            <Image 
+            {props.image && <Image 
                 source={props.image}
                 style={styles.image}
-            />
+            />}
+            {props.ImageComponent}
             <View style={styles.imageTextContainer}>
                 <AppText style={styles.nameText}>{props.title}</AppText>
-                <AppText style={styles.listingsText}>{props.subtitle}</AppText>
+                {props.subtitle && <AppText style={styles.listingsText}>{props.subtitle}</AppText>}
             </View>
         </View>
     </TouchableHighlight>
@@ -23,9 +26,7 @@ export default function componentName(props) {
 const styles = StyleSheet.create({
     container:{
         width:'100%',
-        height:200,
-        marginTop:30,
-        marginLeft:30,
+        padding:15,
         flexDirection:'row',
         alignItems:'flex-start',
     },
@@ -35,7 +36,8 @@ const styles = StyleSheet.create({
         borderRadius:35
     },
     imageTextContainer:{
-        marginTop:10,
+        justifyContent:'center',
+        alignSelf:'center',
     },
     nameText:{
         fontSize:20,
