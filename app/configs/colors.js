@@ -6,5 +6,8 @@ export default  {
     dullbackgraound: '#f8f4f4',
     danger: '#ff5252',
     go: 'lightgreen',
-    logout:'#ffe66d'
+    logout:'#ffe66d',
+    mediumGrey:'#4a4846',
+    
+
 }
