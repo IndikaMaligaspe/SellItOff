@@ -18,7 +18,7 @@ const validationSchema = Yup.object().shape({
 });
 export default function LoginScreen() {
     return (
-        <Screen style={{padding:15}}>
+        <Screen style={styles.container}>
             <View>
                 <Image source={require('../assets/logo-red.png')} style={styles.logo}></Image>
             </View>
@@ -30,7 +30,7 @@ export default function LoginScreen() {
                     autoCapitalize="none"
                     autoCorrect={false}
                     color={colors.secondary}
-                    // keyboardType="email-address"
+                    keyboardType="email-address"
                     fieldNname='email'
                     name='email'
                     placeholder="Email"
@@ -57,6 +57,10 @@ export default function LoginScreen() {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        marginTop: 10, 
+        padding:15,
+    },
     logo:{
         width:70,
         height:70,

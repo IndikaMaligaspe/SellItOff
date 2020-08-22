@@ -17,6 +17,8 @@ import { useState } from 'react';
 import AppPicker from './app/components/AppComponents/AppPicker';
 import AppTextInput from './app/components/AppComponents/AppTextInput'
 import LoginScreen from './app/Screens/LoginScreen';
+import RegisterScreen from './app/Screens/RegisterScreen';
+import ListingEditScreen from './app/Screens/ListingEditScreen';
 
 
 let orientation = false
@@ -64,7 +66,9 @@ export default function App() {
     //      <AppTextInput name='email' size={30} placeholder='Email'></AppTextInput>
     // </Screen>
 
-    <LoginScreen />
+    // <LoginScreen />
+    // <RegisterScreen />
+    <ListingEditScreen />
   );
 }
 

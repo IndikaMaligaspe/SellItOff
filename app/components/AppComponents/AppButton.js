@@ -14,7 +14,7 @@ function AppButton(props) {
 const styles = (props) => StyleSheet.create({
     button:{
         width:'100%',
-        height:60,
+        height:50,
         textAlign:"center",
         justifyContent:'center',
         alignItems:'center',

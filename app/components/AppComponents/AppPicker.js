@@ -9,12 +9,13 @@ import AppText from './AppText';
 import Screen from '../ScreenComponents/Screen'
 import PickerItem from './PickerItem';
 
-export default function AppPicker({categories, icon, placeholder, ... otherProps }) {
+export default function AppPicker({categories, icon, placeholder, size=20, onSelectItem, selectedItem }) {
     const [show, setShow] = useState(false)
     const [placeHolderText, setPlaceHolderText] = useState(placeholder)
     
     const handlePick=(item)=>{
         setPlaceHolderText(item.label);
+        onSelectItem(item);
         setShow(false);
     }
     return (
@@ -23,15 +24,15 @@ export default function AppPicker({categories, icon, placeholder, ... otherProps
                 <View style={styles.container}>
                     <MaterialCommunityIcons style={styles.icon}
                         name={icon}
-                        size={30}
+                        size={size}
                         color={defaultStyles.colors.mediumGrey}
                     />            
                     <AppText style={styles.text}>
-                        {placeHolderText}
+                        {selectedItem ? selectedItem.label : placeHolderText}
                     </AppText>
                     <MaterialCommunityIcons 
                         name="chevron-down"
-                        size={30}
+                        size={size}
                         color={defaultStyles.colors.mediumGrey}
                     />    
                 </View>
@@ -45,7 +46,8 @@ export default function AppPicker({categories, icon, placeholder, ... otherProps
                       renderItem={({item})=>
                        <PickerItem 
                          label={item.label}
-                         onPress={()=>handlePick(item)}/>
+                         onPress={()=>handlePick(item)}
+                       />
                       }/>
                 </Screen>
             </Modal>
