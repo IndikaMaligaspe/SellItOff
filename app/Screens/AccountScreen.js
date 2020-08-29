@@ -30,7 +30,14 @@ const items = [
         },
     },
 ]
-export default function AccountScreen() {
+export default function AccountScreen({navigation}) {
+
+    const loadScreen=(item)=>{
+        if (item.title === "My Messages"){
+            navigation.navigate("Messages");
+        } 
+    }
+
     return (
         <Screen style={styles.container}>
             <View>
@@ -55,8 +62,10 @@ export default function AccountScreen() {
                                 name={item.icon.name}
                                 color={item.icon.color}
                                 backgroundColor={item.icon.backgroundColor}
-                                size={item.icon.size}/>
+                                size={item.icon.size}
+                                />
                             }
+                        onPress = {()=>loadScreen(item)}    
                     />
                 }
                 ItemSeparatorComponent={()=>

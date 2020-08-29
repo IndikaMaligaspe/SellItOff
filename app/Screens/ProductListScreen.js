@@ -6,6 +6,8 @@ import Card from '../components/Card/Card'
 import ListItemSeperator from '../components/ListComponents/ListItemSeperator'
 import Screen from '../components/ScreenComponents/Screen'
 
+import route from '../Navigators/routes'
+
 const initialData = [{
     id:1,
     title:'Red jacket for sale',
@@ -18,7 +20,7 @@ const initialData = [{
     price:'$1000',
     image:require('../assets/couch.jpg'),
 }]
-export default function ProductListScreen() {
+export default function ProductListScreen({navigation}) {
     const [data, setData] = useState(initialData);
     const [refreshing, setRefreshing] = useState(false);
     return (
@@ -29,7 +31,7 @@ export default function ProductListScreen() {
                     title={item.title}
                     subtitle={item.price}
                     image={item.image}
-                    onPress={()=>console.log("Clicked Item",item)}
+                    onPress={()=>navigation.navigate(route.PRODUCT_DETAILS, {item: item})}
                 />}
                 keyExtractor={data => data.id.toString()}
                 ItemSeparatorComponent={()=><ListItemSeperator/>} 

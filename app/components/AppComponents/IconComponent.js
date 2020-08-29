@@ -3,25 +3,27 @@ import { View, StyleSheet } from 'react-native'
 
 import {MaterialCommunityIcons} from '@expo/vector-icons'
 
-export default function IconComponent(props) {
+export default function IconComponent({color, name, size,borderRadious=2, ...props}) {
     return (
-        <View style={styles(props).container}>
+        <View style={[styles(size, borderRadious, props).container, props.style]}>
             <MaterialCommunityIcons 
-                name={props.name}
-                size={props.size * 0.5}
-                color={props.color}
+                name={name}
+                size={size * 0.5}
+                color={color}
+                onPress={props.imagePicker}
             />            
         </View>
     )
 }
 
-const styles = (props) => StyleSheet.create({
+const styles = (size, borderRadious, props) => StyleSheet.create({
     container:{
         backgroundColor:props.backgroundColor ,
-        width:props.size,
-        height:props.size,
-        borderRadius:props.size / 2 ,
+        width:size,
+        height:size,
+        borderRadius:size / borderRadious ,
         justifyContent:"center",
         alignItems:"center",
+        overflow:"hidden",
     }
 })

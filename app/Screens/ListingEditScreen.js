@@ -3,12 +3,20 @@ import { StyleSheet } from 'react-native'
 
 import * as Yup  from 'yup'
 
+
 import Screen from '../components/ScreenComponents/Screen'
 import AppForm from '../components/AppComponents/Form/AppForm'
 import AppFormField from '../components/AppComponents/Form/AppFormField'
 import colors from '../configs/colors'
 import AppFormPicker from '../components/AppComponents/Form/AppFormPicker'
 import AppFormSubmit from '../components/AppComponents/Form/AppFormSubmit'
+import IconPickerItem from '../components/AppComponents/IconPickerItem'
+import ListPickerItem from '../components/AppComponents/ListPickerItem'
+import AppFormImagePicker from '../components/AppComponents/Form/AppFormImagePicker'
+import ImageInputList from '../components/AppComponents/NativeComponents/ImageInputList'
+import useLocation from '../hooks/useLocation'
+
+
 
 
 
@@ -16,14 +24,80 @@ const categories = [
   {
     label:'Furniture', 
     value: 1,
+    icon:
+      {
+        name:'floor-lamp',
+        backgroundColor:'#fc5c65',
+        color:'#fff',
+        size:30
+      }
+  },
+  {
+    label:'Cars', 
+    value: 2,
+    icon:
+      {
+        name:'car',
+        backgroundColor:'#fd9644',
+        color:'#fff',
+        size:30
+      }
+  },
+  {
+    label:'Cameras', 
+    value: 3,
+    icon:
+      {
+        name:'camera',
+        backgroundColor:'#fed330',
+        color:'#fff',
+        size:30
+      }
+  },
+  {
+    label:'Games', 
+    value: 4,
+    icon:
+      {
+        name:'cards',
+        backgroundColor:'#26de81',
+        color:'#fff',
+        size:30
+      }
   },
   {
     label:'Clothing', 
-    value: 2,
+    value: 5,
+    icon:
+      {
+        name:'shoe-heel',
+        backgroundColor:'#2bcbba',
+        color:'#fff',
+        size:30
+      }
   },
   {
-    label:'Shoes', 
-    value: 3,
+    label:'Sports', 
+    value: 6,
+    icon:
+      {
+        name:'basketball',
+        backgroundColor:'#45aaf2',
+        color:'#fff',
+        size:30
+      }
+  },
+  ,
+  {
+    label:'Movies & Music', 
+    value: 7,
+    icon:
+      {
+        name:'headphones',
+        backgroundColor:'#4b7bec',
+        color:'#fff',
+        size:30
+      }
   },
 ]
 
@@ -32,9 +106,11 @@ const validationSchema = Yup.object().shape({
     description: Yup.string().required().min(4).label("Description"),
     price: Yup.number().required().min(1).max(10000).label("Price"),
     category: Yup.object().required().nullable().label("Category"),
+    imageList: Yup.array().min(1,"Please select at least one image"),
 });
 
 export default function ListingEditScreen() {
+    const location = useLocation()
     return (
         <Screen style={styles.container}>
             <AppForm
@@ -42,11 +118,16 @@ export default function ListingEditScreen() {
                 title:"" , 
                 price:"", 
                 category: null, 
-                description:""
+                description:"",
+                imageList:[]
             }}
-            onSubmit={(values)=>console.log(values)}
+            onSubmit={(values)=>console.log(location)}
             validationSchema={validationSchema}
-            >
+            >    
+                <AppFormImagePicker 
+                  // imageUris={imageList} 
+                  fieldName="imageList"
+                />
                 <AppFormField
                     autoCapitalized={false}
                     autoCorrect={false}
@@ -63,13 +144,17 @@ export default function ListingEditScreen() {
                     placeholder="Price"
                     keyboardType="numeric"
                     maxLength={8}
+                    width={120}
                 />
                 <AppFormPicker 
                     size={20}
                     color= {colors.darkBackground}
                     placeholder="Category"
                     categories={categories}
-                    fieldName="category" />
+                    fieldName="category" 
+                    width={200}
+                    PickerItemComponent={IconPickerItem}
+                    numberOfColumns={3}/>
                 <AppFormField
                     autoCapitalized={false}
                     autoCorrect={false}

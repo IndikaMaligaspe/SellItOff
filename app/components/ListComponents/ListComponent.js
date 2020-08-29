@@ -1,13 +1,13 @@
 import React from 'react';
-import { View, Image, StyleSheet, TouchableHighlight } from 'react-native';
+import { View, Image, StyleSheet, TouchableHighlight, ViewBase } from 'react-native';
 
 import AppText from '../AppComponents/AppText'
 import colors from '../../configs/colors';
 import IconComponent from '../AppComponents/IconComponent';
 
-export default function componentName(props) {
+export default function LostComponent(props) {
   return (
-   <TouchableHighlight underlayColor={colors.lightBackground} onPress={props.onPress}>   
+   <TouchableHighlight underlayColor={colors.lightBackground} onPress={props.onPress}>  
         <View style={styles.container}>
             {props.image && <Image 
                 source={props.image}
@@ -18,6 +18,13 @@ export default function componentName(props) {
                 <AppText style={styles.nameText}>{props.title}</AppText>
                 {props.subtitle && <AppText style={styles.listingsText}>{props.subtitle}</AppText>}
             </View>
+            {props.showCheveron && <View style={styles.chevron}>
+                <IconComponent 
+                  name="chevron-right"
+                  size={40}
+                  color={colors.darkBackground} 
+                />
+            </View>}
         </View>
     </TouchableHighlight>
   );
@@ -28,7 +35,10 @@ const styles = StyleSheet.create({
         width:'100%',
         padding:15,
         flexDirection:'row',
-        alignItems:'flex-start',
+    },
+    chevron:{
+        marginRight:5,
+        alignSelf:'center'
     },
     image:{
         width:70,
@@ -38,6 +48,7 @@ const styles = StyleSheet.create({
     imageTextContainer:{
         justifyContent:'center',
         alignSelf:'center',
+        width:'70%'
     },
     nameText:{
         fontSize:20,

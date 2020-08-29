@@ -7,7 +7,8 @@ import ListComponent from '../components/ListComponents/ListComponent'
 
 import colors from '../configs/colors'
 
-export default function ListingDetailsScreen() {
+export default function ListingDetailsScreen({route}) {
+    console.log(route.params.item);
     return (
         <View style={styles.container}>
             <View style={styles.productContainer}>

@@ -8,6 +8,5 @@ export default  {
     go: 'lightgreen',
     logout:'#ffe66d',
     mediumGrey:'#4a4846',
-    
-
+    lightGrey:'#c7c1c1',
 }

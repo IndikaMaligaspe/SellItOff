@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 
-import {Formik} from 'formik';
+// import {Formik} from 'formik';
 import * as Yup  from 'yup'
 
 import Screen from '../components/ScreenComponents/Screen';
@@ -31,7 +31,7 @@ export default function LoginScreen() {
                     autoCorrect={false}
                     color={colors.secondary}
                     keyboardType="email-address"
-                    fieldNname='email'
+                    fieldName='email'
                     name='email'
                     placeholder="Email"
                     size={30}
@@ -42,7 +42,7 @@ export default function LoginScreen() {
                     autoCorrect={false}
                     color={colors.secondary}
                     secureTextEntry={true}
-                    fieldNname='password'
+                    fieldName='password'
                     name='lock'
                     placeholder="Password"
                     size={30}
