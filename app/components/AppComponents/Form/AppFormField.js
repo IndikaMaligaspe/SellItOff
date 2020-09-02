@@ -6,12 +6,13 @@ import AppErrorMessage from './AppErrorMessage';
 
 
 export default function AppFormField({fieldName,width, ...otherProps}) {
-    const {setFieldTouched, handleChange, touched, errors} = useFormikContext()
+    const {setFieldTouched, setFieldValue, touched, errors, values} = useFormikContext()
     // console.log(fieldName)
     return (
         <>
             <AppTextInput
-                onChangeText={handleChange(fieldName)}
+                onChangeText={text=>setFieldValue(fieldName, text)}
+                value={values[fieldName]}
                 onBlur={() => setFieldTouched(fieldName)}
                 width={width}
                 {...otherProps}

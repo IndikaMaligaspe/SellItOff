@@ -1,20 +1,22 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { StyleSheet } from 'react-native'
 
 import * as Yup  from 'yup'
 
 
-import Screen from '../components/ScreenComponents/Screen'
 import AppForm from '../components/AppComponents/Form/AppForm'
 import AppFormField from '../components/AppComponents/Form/AppFormField'
-import colors from '../configs/colors'
+import AppFormImagePicker from '../components/AppComponents/Form/AppFormImagePicker'
 import AppFormPicker from '../components/AppComponents/Form/AppFormPicker'
 import AppFormSubmit from '../components/AppComponents/Form/AppFormSubmit'
+import AppProgressBar from '../components/AppComponents/AppProgressBar'
+import colors from '../configs/colors'
 import IconPickerItem from '../components/AppComponents/IconPickerItem'
-import ListPickerItem from '../components/AppComponents/ListPickerItem'
-import AppFormImagePicker from '../components/AppComponents/Form/AppFormImagePicker'
-import ImageInputList from '../components/AppComponents/NativeComponents/ImageInputList'
+import listingsApi from '../api/listings'
+import Screen from '../components/ScreenComponents/Screen'
 import useLocation from '../hooks/useLocation'
+
+// import useApi from '../hooks/useApi'
 
 
 
@@ -110,9 +112,31 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function ListingEditScreen() {
-    const location = useLocation()
+    const location = useLocation();
+    const [progress, setProgress] = useState(0);
+    const [visible, setVisible] = useState(false);
+    // const postListingsApi = useApi(listingsApi.postlisting)
+
+
+    const handleSubmit = async (data, resetForm) => {
+      // console.log(data);
+      setProgress(0);
+      setVisible(true);
+      const result = await listingsApi.postlisting(
+                            {...data, location},
+                            (progress) => setProgress(progress));
+      if (!result.ok){
+        setVisible(false)
+        return alert('Culd not save data');
+      }
+      resetForm();
+    }
     return (
         <Screen style={styles.container}>
+          <AppProgressBar 
+            visible={visible} 
+            progress={progress} 
+            onDone={()=>setVisible(false)}/>
             <AppForm
             initialValues={{
                 title:"" , 
@@ -121,7 +145,7 @@ export default function ListingEditScreen() {
                 description:"",
                 imageList:[]
             }}
-            onSubmit={(values)=>console.log(location)}
+            onSubmit={(values, {resetForm})=>handleSubmit(values, resetForm)}
             validationSchema={validationSchema}
             >    
                 <AppFormImagePicker 

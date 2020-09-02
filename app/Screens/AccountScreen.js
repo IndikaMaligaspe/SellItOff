@@ -1,6 +1,8 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { View, StyleSheet } from 'react-native'
 
+import AuthContext from '../auth/context';
+import authStore from '../auth/store'
 import ListComponent from '../components/ListComponents/ListComponent';
 import Screen from '../components/ScreenComponents/Screen';
 import colors from '../configs/colors';
@@ -8,6 +10,7 @@ import IconComponent from '../components/AppComponents/IconComponent';
 import ListItemSeperator from '../components/ListComponents/ListItemSeperator';
 
 import { FlatList } from 'react-native-gesture-handler';
+import useAuth from '../auth/useAuth';
 
 
 const items = [
@@ -31,11 +34,15 @@ const items = [
     },
 ]
 export default function AccountScreen({navigation}) {
-
+    const {user, logOut} =  useAuth()
     const loadScreen=(item)=>{
         if (item.title === "My Messages"){
             navigation.navigate("Messages");
         } 
+    }
+
+   const handleLogout = () =>{
+      logOut()
     }
 
     return (
@@ -48,8 +55,8 @@ export default function AccountScreen({navigation}) {
                 }}>
                     <ListComponent
                     image={require('../assets/profileImage.png')}
-                    title='Indika Maligaspe'
-                    subtitle='k.indika.maligaspe@gmail.com' />
+                    title={user.name}
+                    subtitle={user.email} />
                 </View>
                 <FlatList style={styles.list} 
                 data = {items}
@@ -78,7 +85,9 @@ export default function AccountScreen({navigation}) {
                             name='logout'
                             color={colors.lightBackground}
                             backgroundColor={colors.logout}
-                            size={40} />}>
+                            size={40} 
+                            />}
+                            onPress={()=>handleLogout()}>
                     </ListComponent>
                 </View>
             </View>

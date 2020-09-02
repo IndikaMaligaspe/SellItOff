@@ -1,4 +1,4 @@
-import React from 'react';
+import React,  {useState, useContext} from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 
 // import {Formik} from 'formik';
@@ -7,25 +7,46 @@ import * as Yup  from 'yup'
 import Screen from '../components/ScreenComponents/Screen';
 // import AppButton from '../components/AppComponents/AppButton';
 
-import colors from '../configs/colors'
 import AppFormField from '../components/AppComponents/Form/AppFormField';
 import AppFormSubmit from '../components/AppComponents/Form/AppFormSubmit'
 import AppForm from '../components/AppComponents/Form/AppForm';
+import colors from '../configs/colors'
+import authApi from '../api/auth'
+import AppErrorMessage from '../components/AppComponents/Form/AppErrorMessage';
+import useAuth from '../auth/useAuth';
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().required().email().label("Email"),
     password: Yup.string().required().min(4).label("Password"),
 });
 export default function LoginScreen() {
+    const {logIn} = useAuth();
+    const [loginFailed, setLoginFailed] = useState(false);
+
+
+    const handleSubmit = async  ({email, password})=>{
+          const response = await authApi.login(email, password);
+          if (!response.ok){
+            setLoginFailed(true);
+          }else{
+            setLoginFailed(false);
+            logIn(response.data)
+          }
+    }
+
     return (
         <Screen style={styles.container}>
+
             <View>
                 <Image source={require('../assets/logo-red.png')} style={styles.logo}></Image>
             </View>
             <AppForm
               initialValues={{email: "" , password: ""}}
-              onSubmit={(values) => console.log(values)}
+              onSubmit={(values) => handleSubmit(values)}
               validationSchema={validationSchema}>
+                <AppErrorMessage 
+                    error="Invalid username / password" 
+                    visible={loginFailed} />
                 <AppFormField
                     autoCapitalize="none"
                     autoCorrect={false}

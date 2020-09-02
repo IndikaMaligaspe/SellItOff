@@ -1,52 +1,55 @@
-import React, { useState } from 'react'
-import Constants from 'expo-constants'
-import { View, Text,StyleSheet,FlatList} from 'react-native'
+import React, { useState , useEffect} from 'react'
+import {StyleSheet,FlatList} from 'react-native'
 
+import ActivityLoader from '../components/AppComponents/ActivityLoader'
+import AppButton from '../components/AppComponents/AppButton'
+import AppText from '../components/AppComponents/AppText'
 import Card from '../components/Card/Card'
 import ListItemSeperator from '../components/ListComponents/ListItemSeperator'
+import listingsApi from '../api/listings'
+import route from '../Navigators/routes'
 import Screen from '../components/ScreenComponents/Screen'
 
-import route from '../Navigators/routes'
+import useApi from '../hooks/useApi'
 
-const initialData = [{
-    id:1,
-    title:'Red jacket for sale',
-    price:'$100',
-    image:require('../assets/jacket.jpg'),
-},
-{
-    id:2,
-    title:'Couch in great condition',
-    price:'$1000',
-    image:require('../assets/couch.jpg'),
-}]
 export default function ProductListScreen({navigation}) {
-    const [data, setData] = useState(initialData);
-    const [refreshing, setRefreshing] = useState(false);
+    const getListingsApi = useApi(listingsApi.getListings)
+    useEffect(() => {
+        getListingsApi.request();
+    }, [])
+    console.log(getListingsApi.loading); 
     return (
         <Screen>
+            {getListingsApi.error && (
+                <React.Fragment>
+                    <AppText>Sorry , could not load data.</AppText> 
+                    <AppButton title="Retry" onPress={getListing}/>
+                </React.Fragment>
+            )}
+            <ActivityLoader visible={getListingsApi.loading} />
             <FlatList style={styles.layout}
-                data={data}
+                data={getListingsApi.data}
                 renderItem={({item})=><Card 
                     title={item.title}
                     subtitle={item.price}
-                    image={item.image}
+                    imageURL={item.images.length? item.images[0].url: null}
+                    thumbnailURL={item.images.length? item.images[0].thumbnailUrl: null}
                     onPress={()=>navigation.navigate(route.PRODUCT_DETAILS, {item: item})}
                 />}
                 keyExtractor={data => data.id.toString()}
                 ItemSeparatorComponent={()=><ListItemSeperator/>} 
-                refreshing={refreshing}
-                onRefresh={()=> {
-                    setData([
-                        {
-                            id:3,
-                            title:'Garbage',
-                            price:'$1000',
-                            image:require('../assets/couch.jpg'),
-                        } 
-                    ])
-                }
-                }
+                // refreshing={refreshing}
+                // onRefresh={()=> {
+                //     setData([
+                //         {
+                //             id:3,
+                //             title:'Garbage',
+                //             price:'$1000',
+                //             image:require('../assets/couch.jpg'),
+                //         } 
+                //     ])
+                // }
+                // }
                 />
         </Screen>
     )

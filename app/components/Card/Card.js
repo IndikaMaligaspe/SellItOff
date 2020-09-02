@@ -1,21 +1,25 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image, TouchableHighlight } from 'react-native'
+import { StyleSheet, Text, View,  TouchableHighlight } from 'react-native'
+import {Image} from 'react-native-expo-image-cache'
 
 import AppText from '../AppComponents/AppText'
 
 import colors from '../../configs/colors'
 
 function Card(props) {
+    console.log(props.imageURL)
     return (
         <TouchableHighlight 
             underlayColor={colors.lightBackground}
             onPress={props.onPress}>
             <View style={styles.container}>
-                <Image style={styles.image}
-                    source={props.image} 
-                    // resizeMode='contain' 
-                />
-                <View style={styles.textContainer}>
+                <Image
+                 style = {styles.image}
+                 preview={{uri:props.thumbnailURL}}
+                 tint="light"
+                 uri={props.imageURL}
+                 /> 
+                 <View style={styles.textContainer}>
                     <AppText style={styles.title}>{props.title}</AppText>
                     <AppText style={styles.subtitle}>{props.subtitle}</AppText>
                 </View>
