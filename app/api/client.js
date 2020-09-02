@@ -3,12 +3,12 @@ import cache from '../utlity/cache'
 import authStore from '../auth/store'
 
 const apiClient = create({
-    baseURL: 'http://192.168.1.6:9000/api'
+    baseURL: 'http://192.168.1.3:9000/api'
 });
 
 apiClient.addAsyncRequestTransform(async (request) => {
     const authToken = await authStore.getToken();
-    if (!authToken) retrun;
+    if (!authToken) return;
     request.headers["x-auth-token"] = authToken;
 });
 

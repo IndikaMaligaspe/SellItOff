@@ -1,15 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {StyleSheet} from 'react-native'
 
 import {Formik} from 'formik';
 import * as Yup  from 'yup'
 
-import Screen from '../components/ScreenComponents/Screen'
 import AppForm from '../components/AppComponents/Form/AppForm'
 import AppFormField from '../components/AppComponents/Form/AppFormField'
-
-import colors from '../configs/colors'
 import AppFormSubmit from '../components/AppComponents/Form/AppFormSubmit';
+import AppErrorMessage from '../components/AppComponents/Form/AppErrorMessage';
+import ActivityIndicator from '../components/AppComponents/ActivityLoader'
+import colors from '../configs/colors'
+import Screen from '../components/ScreenComponents/Screen'
+import userApi from '../api/user'
+import useAuth from '../auth/useAuth';
+import authApi from '../api/auth'
 
 const validationSchema = Yup.object().shape({
     name: Yup.string().required().min(4).label("Name"),
@@ -17,14 +21,40 @@ const validationSchema = Yup.object().shape({
     password: Yup.string().required().min(4).label("Password"),
 });
 
-export default function RegisterScreen() {
-    return (
+
+
+function RegisterScreen() {
+  const [isError, setIsError] = useState(false);
+  const [error, setError] = useState("")
+  const registerApi = useApi(userApi.register)
+  const loginApi = useApi(authApi.login)
+  const auth = useAuth()
+   
+  const handleSubmit = async (userInfo) =>{
+    const response = await registerApi.request(userInfo)
+    if (!response.ok){
+      setIsError(true);
+      if(response.data) setError(response.data.error)
+      else setError("Undefined error occured.")
+    }else{
+      setIsError(false);
+      const {data: authToken} = await loginApi.request(
+                  userInfo.email, userInfo.password);
+      auth.logIn(authToken);
+    }
+  }
+  
+ 
+  return (
+    <React.Fragment>
+      <ActivityIndicator visible={registerApi.loading || loginApi.loading} />
       <Screen style={styles.container}>
           <AppForm
             initialValues={{name:"" , email:"", password: ""}}
-            onSubmit={(values)=>console.log(values)}
+            onSubmit={(values)=>handleSubmit(values)}
             validationSchema={validationSchema}
           >
+             <AppErrorMessage error={error} visible={isError} />
              <AppFormField 
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -57,6 +87,7 @@ export default function RegisterScreen() {
                 padding={5} />
           </AppForm>
       </Screen>
+    </React.Fragment>
     )
 }
 
@@ -66,3 +97,5 @@ const styles = StyleSheet.create({
         padding:15,
     },
 })
+
+export default RegisterScreen;

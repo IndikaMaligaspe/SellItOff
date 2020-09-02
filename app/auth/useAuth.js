@@ -17,5 +17,9 @@ export default useAuth = () =>{
         authStore.removeToken();
     };
 
+    // const registerUser = () =>{
+        
+    // }
+
     return {user, logIn, logOut};
 };

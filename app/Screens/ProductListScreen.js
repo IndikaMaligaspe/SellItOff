@@ -19,39 +19,42 @@ export default function ProductListScreen({navigation}) {
     }, [])
     console.log(getListingsApi.loading); 
     return (
-        <Screen>
-            {getListingsApi.error && (
-                <React.Fragment>
-                    <AppText>Sorry , could not load data.</AppText> 
-                    <AppButton title="Retry" onPress={getListing}/>
-                </React.Fragment>
-            )}
+        <React.Fragment>
             <ActivityLoader visible={getListingsApi.loading} />
-            <FlatList style={styles.layout}
-                data={getListingsApi.data}
-                renderItem={({item})=><Card 
-                    title={item.title}
-                    subtitle={item.price}
-                    imageURL={item.images.length? item.images[0].url: null}
-                    thumbnailURL={item.images.length? item.images[0].thumbnailUrl: null}
-                    onPress={()=>navigation.navigate(route.PRODUCT_DETAILS, {item: item})}
-                />}
-                keyExtractor={data => data.id.toString()}
-                ItemSeparatorComponent={()=><ListItemSeperator/>} 
-                // refreshing={refreshing}
-                // onRefresh={()=> {
-                //     setData([
-                //         {
-                //             id:3,
-                //             title:'Garbage',
-                //             price:'$1000',
-                //             image:require('../assets/couch.jpg'),
-                //         } 
-                //     ])
-                // }
-                // }
-                />
-        </Screen>
+            <Screen>
+                {getListingsApi.error && (
+                    <React.Fragment>
+                        <AppText>Sorry , could not load data.</AppText> 
+                        <AppButton title="Retry" onPress={getListing}/>
+                    </React.Fragment>
+                )}
+                
+                <FlatList style={styles.layout}
+                    data={getListingsApi.data}
+                    renderItem={({item})=><Card 
+                        title={item.title}
+                        subtitle={item.price}
+                        imageURL={item.images.length? item.images[0].url: null}
+                        thumbnailURL={item.images.length? item.images[0].thumbnailUrl: null}
+                        onPress={()=>navigation.navigate(route.PRODUCT_DETAILS, {item: item})}
+                    />}
+                    keyExtractor={data => data.id.toString()}
+                    ItemSeparatorComponent={()=><ListItemSeperator/>} 
+                    // refreshing={refreshing}
+                    // onRefresh={()=> {
+                    //     setData([
+                    //         {
+                    //             id:3,
+                    //             title:'Garbage',
+                    //             price:'$1000',
+                    //             image:require('../assets/couch.jpg'),
+                    //         } 
+                    //     ])
+                    // }
+                    // }
+                    />
+            </Screen>
+        </React.Fragment>
     )
 }
 

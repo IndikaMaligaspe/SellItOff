@@ -1,20 +1,23 @@
-import React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
+import React, {useEffect} from 'react';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import {MaterialCommunityIcons} from '@expo/vector-icons'
+import {MaterialCommunityIcons} from '@expo/vector-icons';
 
-import AccountNavigation from './AccountNavigation'
-import ListingEditScreen from '../Screens/ListingEditScreen'
-import ProductListingNavigator from './ProductListingNavigator';
-
-import colors from '../configs/colors'
-
+import AccountNavigation from './AccountNavigation';
+import ListingEditScreen from '../Screens/ListingEditScreen';
 import NewListingButton from './NewListingButton';
-import routes from './routes'
+import ProductListingNavigator from './ProductListingNavigator';
+import navigation from '../Navigators/rootNavigation';
+
+import colors from '../configs/colors';
+import routes from './routes';
+import useNotifications from '../hooks/useNotifications';
+
 
 const bottomTab = createBottomTabNavigator()
 export default FooterNavigator= () =>{
-    
+  useNotifications((notification) => {navigation.navigate(routes.ACCOUNT)});
+
     return (
         <bottomTab.Navigator
              tabBarOptions={{

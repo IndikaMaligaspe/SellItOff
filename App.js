@@ -7,6 +7,7 @@ import authStore from './app/auth/store';
 import FooterNavigator from './app/Navigators/FooterNavigator';
 import { NavigationContainer } from '@react-navigation/native';
 import navigationtheme from './app/Navigators/navigationtheme';
+import { navigationRef } from './app/Navigators/rootNavigation';
 
 
 
@@ -25,7 +26,7 @@ export default function App() {
     return <AppLoading startAsync={restoreUser} onFinish={()=>setIsReady(true)} />
   return (
     <AuthContext.Provider value={{user, setUser}}>
-      <NavigationContainer theme={navigationtheme}>
+      <NavigationContainer ref={navigationRef} theme={navigationtheme}>
         {user? <FooterNavigator /> : <AuthNavigator/>}
       </NavigationContainer>
     </AuthContext.Provider>
