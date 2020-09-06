@@ -5,6 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import MessagesScreen from "../Screens/MessagesScreen";
 import AccountScreen from '../Screens/AccountScreen'
+import MyListingScreen from '../Screens/MyListingsScreen'
 
 import routes from './routes'
 
@@ -23,6 +24,13 @@ export default AccountNavigations =() =>{
             <Stack.Screen 
                 name={routes.MESSAGES} 
                 component={MessagesScreen} 
+                options={{
+                    title: "",
+                    headerShown: false,
+                }}/>
+            <Stack.Screen 
+                name={routes.MYLISTINGS} 
+                component={MyListingScreen} 
                 options={{
                     title: "",
                     headerShown: false,

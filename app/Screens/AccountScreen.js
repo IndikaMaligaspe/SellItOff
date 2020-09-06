@@ -38,7 +38,9 @@ export default function AccountScreen({navigation}) {
     const loadScreen=(item)=>{
         if (item.title === "My Messages"){
             navigation.navigate("Messages");
-        } 
+        }else if (item.title === "My Listings"){
+            navigation.navigate("MyListings");
+        }  
     }
 
    const handleLogout = () =>{

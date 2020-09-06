@@ -8,6 +8,7 @@ export default Object.freeze ({
     LIST_EDIT:'ListingEdit',
     PRODUCT_LIST: 'Product_List',
     PRODUCT_DETAILS: 'Prouct_Detail',
+    MYLISTINGS:'MyListings',
 
 
 });

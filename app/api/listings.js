@@ -1,8 +1,20 @@
 import client from './client';
 
-const endpoint = "/listings";
+const endpoint = ["/listings","/my/listings"];
 
-const getListings = () => client.get(endpoint);
+const getListings = () => client.get(endpoint[0]);
+
+const getMyListings = async (userId)=>{
+    const data = {
+        "user":
+            {
+                "userId":userId
+            }
+    };   
+    const result = await client.get(endpoint[1], data);
+    if (!result.ok)return;
+    return result;
+}
 
 const postlisting = (data, OnUploadProgress) => {
     const formData = new FormData();
@@ -22,11 +34,12 @@ const postlisting = (data, OnUploadProgress) => {
         formData.append("location", JSON.stringify(data.location));   
     
     // console.log(formData);
-    return client.post(endpoint, formData,{
+    return client.post(endpoint[0], formData,{
                         onUploadProgress: (progress)=> 
                             OnUploadProgress(progress.loaded / progress.total)});
 }
 export default {
     getListings, 
     postlisting,
+    getMyListings,
 };
