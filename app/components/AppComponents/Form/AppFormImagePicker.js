@@ -4,9 +4,10 @@ import {useFormikContext} from 'formik'
 
 import AppErrorMessage from './AppErrorMessage';
 import ImageInputList from '../NativeComponents/ImageInputList';
+import ImageInput from '../NativeComponents/ImageInput';
 
-function AppFormImagePicker({fieldName}) {
-  
+function AppFormImagePicker({fieldName, multiImage=false}) {
+    
   const scroll = useRef();
 //   scroll.current.scrollToEnd();
   
@@ -14,6 +15,7 @@ function AppFormImagePicker({fieldName}) {
   const imageUris = values[fieldName]
 
   const onAddImage = (uri) => {
+    console.log(uri);
     setFieldValue(fieldName, [...imageUris, uri]);
   }
 
@@ -26,11 +28,13 @@ function AppFormImagePicker({fieldName}) {
         <ScrollView ref={scroll} 
             horizontal 
             onContentSizeChange={()=>{scroll.current.scrollToEnd()}}>
-            <ImageInputList
-            imageUris={imageUris}
-            onAddImage={(uri)=>onAddImage(uri)}
-            onRemoveImage={(uri)=>onRemoveImage(uri)}>
-            </ImageInputList>
+              <ImageInputList
+              imageUris={imageUris}
+              onAddImage={(uri)=>onAddImage(uri)}
+              onRemoveImage={(uri)=>onRemoveImage(uri)}
+              >
+              </ImageInputList>
+
             <AppErrorMessage error={errors[fieldName]} 
             visible={touched[fieldName]} />
         </ScrollView>

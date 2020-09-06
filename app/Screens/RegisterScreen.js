@@ -9,6 +9,7 @@ import AppFormField from '../components/AppComponents/Form/AppFormField'
 import AppFormSubmit from '../components/AppComponents/Form/AppFormSubmit';
 import AppErrorMessage from '../components/AppComponents/Form/AppErrorMessage';
 import ActivityIndicator from '../components/AppComponents/ActivityLoader'
+import AppFormImagePicker from '../components/AppComponents/Form/AppFormImagePicker'
 import colors from '../configs/colors'
 import Screen from '../components/ScreenComponents/Screen'
 import userApi from '../api/user'
@@ -50,17 +51,23 @@ function RegisterScreen() {
       <ActivityIndicator visible={registerApi.loading || loginApi.loading} />
       <Screen style={styles.container}>
           <AppForm
-            initialValues={{name:"" , email:"", password: ""}}
+            initialValues={{name:"" , email:"", password: "", imageList: []}}
             onSubmit={(values)=>handleSubmit(values)}
             validationSchema={validationSchema}
           >
              <AppErrorMessage error={error} visible={isError} />
+             <AppFormImagePicker 
+                  // imageUris={imageList} 
+                  imagesLimit={1}
+                  fieldName="imageList"
+             />
              <AppFormField 
                 autoCapitalize="none"
                 autoCorrect={false}
                 color={colors.secondary}
                 fieldName = "name"
-                placeholder="Name" 
+                placeholder="Name"
+                placeholderTextColor="white"
                 name="account"
                 size={30}/>
               <AppFormField 
@@ -70,6 +77,7 @@ function RegisterScreen() {
                 color={colors.secondary}
                 fieldName = "email"
                 placeholder="Email" 
+                placeholderTextColor="white"
                 name="email"
                 size={30}/>
               <AppFormField 
@@ -78,6 +86,7 @@ function RegisterScreen() {
                 color={colors.secondary}
                 fieldName = "password"
                 placeholder="Password" 
+                placeholderTextColor="white"
                 name="lock"
                 size={30}/>
 

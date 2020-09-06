@@ -11,7 +11,7 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 
 function ImageInput({imageUri, onChangeImage, ...props}) {
-    // console.log(imageUri);
+    console.log(imageUri);
     const selectImage = async () =>{
         try{
            const result = await ImagePicker.launchImageLibraryAsync({
