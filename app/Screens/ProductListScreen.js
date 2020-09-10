@@ -17,7 +17,7 @@ export default function ProductListScreen({navigation}) {
     useEffect(() => {
         getListingsApi.request();
     }, [])
-    console.log(getListingsApi.loading); 
+    // console.log(getListingsApi.data); 
     return (
         <React.Fragment>
             <ActivityLoader visible={getListingsApi.loading} />
@@ -38,7 +38,7 @@ export default function ProductListScreen({navigation}) {
                         thumbnailURL={item.images.length? item.images[0].thumbnailUrl: null}
                         onPress={()=>navigation.navigate(route.PRODUCT_DETAILS, {item: item})}
                     />}
-                    keyExtractor={data => data.id.toString()}
+                    keyExtractor={data => data._id}
                     ItemSeparatorComponent={()=><ListItemSeperator/>} 
                     // refreshing={refreshing}
                     // onRefresh={()=> {

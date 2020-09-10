@@ -7,12 +7,18 @@ import AppText from './AppText'
 // import styles from '../../configs/styles'
 
 export default function ListPickerItem({item, onPress}) {
-    const backgroundColor = item.icon.backgroundColor
+    const backgroundColor = item.backgroundColor
+    console.log(`ITEM - ${item}`);
     return (
         <View>
             <TouchableOpacity onPress={onPress}>
                 <View style={styles.container}>
-                    <AppText style={styles.text}>{item.label}</AppText>
+                    {item.label && 
+                        <AppText style={styles.text}>{item.label}</AppText>
+                    }
+                    {item.name && 
+                        <AppText style={styles.text}>{item.name}</AppText>
+                    }
                 </View>
             </TouchableOpacity>
         </View>

@@ -67,7 +67,7 @@ function RegisterScreen() {
                 color={colors.secondary}
                 fieldName = "name"
                 placeholder="Name"
-                placeholderTextColor="white"
+                placeholderTextColor="black"
                 name="account"
                 size={30}/>
               <AppFormField 
@@ -77,7 +77,7 @@ function RegisterScreen() {
                 color={colors.secondary}
                 fieldName = "email"
                 placeholder="Email" 
-                placeholderTextColor="white"
+                placeholderTextColor="black"
                 name="email"
                 size={30}/>
               <AppFormField 
@@ -86,7 +86,7 @@ function RegisterScreen() {
                 color={colors.secondary}
                 fieldName = "password"
                 placeholder="Password" 
-                placeholderTextColor="white"
+                placeholderTextColor="black"
                 name="lock"
                 size={30}/>
 

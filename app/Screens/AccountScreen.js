@@ -46,7 +46,7 @@ export default function AccountScreen({navigation}) {
    const handleLogout = () =>{
       logOut()
     }
-
+    console.log(user);
     return (
         <Screen style={styles.container}>
             <View>
@@ -56,7 +56,7 @@ export default function AccountScreen({navigation}) {
                     marginTop:30,
                 }}>
                     <ListComponent
-                    image={require('../assets/profileImage.png')}
+                    image={{uri:user.images[0].url}}
                     title={user.name}
                     subtitle={user.email} />
                 </View>

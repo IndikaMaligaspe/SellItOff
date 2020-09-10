@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import { StyleSheet } from 'react-native'
 
 import * as Yup  from 'yup'
@@ -15,8 +15,9 @@ import IconPickerItem from '../components/AppComponents/IconPickerItem'
 import listingsApi from '../api/listings'
 import Screen from '../components/ScreenComponents/Screen'
 import useLocation from '../hooks/useLocation'
+import cateGoryListApI  from '../api/categoryList'
 
-// import useApi from '../hooks/useApi'
+import useApi from '../hooks/useApi'
 
 
 
@@ -115,8 +116,15 @@ export default function ListingEditScreen() {
     const location = useLocation();
     const [progress, setProgress] = useState(0);
     const [visible, setVisible] = useState(false);
-    // const postListingsApi = useApi(listingsApi.postlisting)
+    
 
+    const getCategoryListApi = useApi(cateGoryListApI.getCategoryList)
+    
+    useEffect(() => {
+      getCategoryListApi.request();
+    }, [])
+
+    // console.log(`data -- ${JSON.stringify(getCategoryListApi.data)}`);
 
     const handleSubmit = async (data, resetForm) => {
       // console.log(data);
@@ -158,6 +166,7 @@ export default function ListingEditScreen() {
                     color={colors.secondary}
                     fieldName="title"
                     placeholder="Title"
+                    placeholderTextColor="black"
                     maxLength={255}
                 />
                 <AppFormField
@@ -166,6 +175,7 @@ export default function ListingEditScreen() {
                     color={colors.secondary}
                     fieldName="price"
                     placeholder="Price"
+                    placeholderTextColor="black"
                     keyboardType="numeric"
                     maxLength={8}
                     width={120}
@@ -174,7 +184,8 @@ export default function ListingEditScreen() {
                     size={20}
                     color= {colors.darkBackground}
                     placeholder="Category"
-                    categories={categories}
+                    placeholderTextColor="black"
+                    categories={getCategoryListApi.data}
                     fieldName="category" 
                     width={200}
                     PickerItemComponent={IconPickerItem}
@@ -185,6 +196,7 @@ export default function ListingEditScreen() {
                     color={colors.secondary}
                     fieldName="description"
                     placeholder="Description"
+                    placeholderTextColor="black"
                     multiline={true}
                     numberOfLines={3}
 

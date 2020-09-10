@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "DoneWithIt",
-    "slug": "DoneWithIt",
+    "name": "SellItOff",
+    "slug": "SellItOff",
     "version": "1.0.0",
     "orientation": "default",
     "icon": "./app/assets/icon.png",

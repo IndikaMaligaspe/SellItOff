@@ -25,7 +25,7 @@ export default function ListingDetailsScreen({route}) {
     
     const loadUserDetails = async () =>{
         const results = await getUserApi.request(userId);
-        // console.log(results);
+        
         if(!results.ok) return;
         setUser(results.data);
     }

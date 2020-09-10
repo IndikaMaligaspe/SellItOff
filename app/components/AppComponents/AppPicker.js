@@ -17,10 +17,11 @@ export default function AppPicker({ categories, icon, placeholder, size=20,
     const [placeHolderText, setPlaceHolderText] = useState(placeholder)
     
     const handlePick=(item)=>{
-        setPlaceHolderText(item.label);
+        setPlaceHolderText(item.name);
         onSelectItem(item);
         setShow(false);
     }
+    // console.log(categories);
     return (
         <>
             <TouchableWithoutFeedback onPress={()=>setShow(true)}>
@@ -30,7 +31,7 @@ export default function AppPicker({ categories, icon, placeholder, size=20,
                         size={size}
                     />    
                     {selectedItem ? 
-                            <AppText style={styles.selected}> {selectedItem.label} </AppText>
+                            <AppText style={styles.selected}> {selectedItem.name} </AppText>
                             :
                             <AppText style={styles.text}> {placeholder} </AppText>
                     }
@@ -48,7 +49,7 @@ export default function AppPicker({ categories, icon, placeholder, size=20,
                     <View style={styles.flatListContainer}>
                         <FlatList 
                         data={categories}
-                        keyExtractor={(item)=>item.value.toString()}
+                        keyExtractor={(item)=>item._id}
                         renderItem={({item})=>
                         <View style={styles.itemPicker}>
                             <PickerItemComponent

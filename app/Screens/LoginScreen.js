@@ -25,9 +25,7 @@ export default function LoginScreen() {
 
 
     const handleSubmit = async  ({email, password})=>{
-        //   console.log("Loging in..");  
           const response = await authApi.login(email, password);
-        //   console.log(response.data);
           if (!response.ok){
             setLoginFailed(true);
           }else{
@@ -57,6 +55,7 @@ export default function LoginScreen() {
                     fieldName='email'
                     name='email'
                     placeholder="Email"
+                    placeholderTextColor="black"
                     size={30}
                 />
                 
@@ -68,6 +67,7 @@ export default function LoginScreen() {
                     fieldName='password'
                     name='lock'
                     placeholder="Password"
+                    placeholderTextColor="black"
                     size={30}
                 />
                 <AppFormSubmit 

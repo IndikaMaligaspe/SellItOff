@@ -5,7 +5,7 @@ import AppText from '../AppComponents/AppText'
 import colors from '../../configs/colors';
 import IconComponent from '../AppComponents/IconComponent';
 
-export default function LostComponent(props) {
+export default function ListComponent(props) {
   return (
    <TouchableHighlight underlayColor={colors.lightBackground} onPress={props.onPress}>  
         <View style={styles.container}>
@@ -13,7 +13,7 @@ export default function LostComponent(props) {
                 source={props.image}
                 style={styles.image}
             />}
-            {props.ImageComponent}
+            {!props.image && props.ImageComponent}
             <View style={styles.imageTextContainer}>
                 <AppText style={styles.nameText}>{props.title}</AppText>
                 {props.subtitle && <AppText style={styles.listingsText}>{props.subtitle}</AppText>}

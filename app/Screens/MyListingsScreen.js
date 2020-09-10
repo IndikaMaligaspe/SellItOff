@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react'
+import React, { useEffect, useState, useContext} from 'react'
 import {StyleSheet,FlatList, View, ScrollViewComponent} from 'react-native'
 
 import ActivityLoader from '../components/AppComponents/ActivityLoader'
@@ -9,17 +9,20 @@ import ListItemSeperator from '../components/ListComponents/ListItemSeperator'
 import listingsApi from '../api/listings'
 import route from '../Navigators/routes'
 import { ScrollView } from 'react-native-gesture-handler'
+import AuthContext from '../auth/context'
 
 export default function MyListingsScreen({userId=1,navigation}) {
     const [refreshing, setRefreshing] = useState(false)
     const getListingsApi = useApi(listingsApi.getMyListings)
+    const {user}  = useContext(AuthContext)
+    
     useEffect(() => {
-       getListingsApi.request(userId);
+       getListingsApi.request(user._id);
     }, [])
 
     const refresh =() =>{
         setRefreshing(true);
-        getListingsApi.request(userId)
+        getListingsApi.request(user._id)
         setRefreshing(false);
     }
     return (
@@ -42,7 +45,7 @@ export default function MyListingsScreen({userId=1,navigation}) {
                         thumbnailURL={item.images.length? item.images[0].thumbnailUrl: null}
                         onPress={()=>navigation.navigate(route.PRODUCT_DETAILS, {item: item})}
                     />}
-                    keyExtractor={data => data.id.toString()}
+                    keyExtractor={data => data._id}
                     ItemSeparatorComponent={()=><ListItemSeperator/>} 
                     refreshing={refreshing}
                     onRefresh={refresh}

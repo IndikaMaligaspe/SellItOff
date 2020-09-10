@@ -6,17 +6,17 @@ import {MaterialCommunityIcons} from '@expo/vector-icons';
 import AppText from './AppText'
 
 export default function IconPickerItem({item, onPress}) {
-    const backgroundColor = item.icon.backgroundColor
+    const backgroundColor = item.backgroundColor
     return (
         <View>
             <TouchableOpacity onPress={onPress}>
                 <View style={styles.container}>
                     <MaterialCommunityIcons style={[styles.icon,{backgroundColor}]}
-                            name={item.icon.name}
-                            size={item.icon.size}
-                            color={item.icon.color}
+                            name={item.icon}
+                            size={30}
+                            color={item.color}
                         />   
-                    <AppText style={styles.text}>{item.label}</AppText>
+                    <AppText style={styles.text}>{item.name}</AppText>
                 </View>
             </TouchableOpacity>
         </View>

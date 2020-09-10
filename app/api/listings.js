@@ -12,6 +12,7 @@ const getMyListings = async (userId)=>{
             }
     };   
     const result = await client.get(endpoint[1], data);
+    console.log(result.data);
     if (!result.ok)return;
     return result;
 }
@@ -20,7 +21,7 @@ const postlisting = (data, OnUploadProgress) => {
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("price", data.price);
-    formData.append("categoryId", data.category.value);
+    formData.append("categoryId", data.category._id);
     formData.append("description",data.description);
 
     data.imageList.forEach((image, index) => 
