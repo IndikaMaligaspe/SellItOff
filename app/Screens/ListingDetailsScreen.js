@@ -31,7 +31,8 @@ export default function ListingDetailsScreen({route}) {
     }
     
     const handleSubmit = async (values, resetForm) => {
-        const results = await postMessagesApi.request(values.message, item.id);
+        // console.log(`item - ${JSON.stringify(item._id)}`);
+        const results = await postMessagesApi.request(values.message, item._id);
         // console.log(results);
         if(!results.ok) return;
         

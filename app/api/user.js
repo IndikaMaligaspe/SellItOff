@@ -23,7 +23,10 @@ const getUser = async (id) => {
     return response;
 }
 
-const userMessage = (message, listingId) => client.post(endpoint[2], {message, listingId});
+const userMessage = async (message, listingId) => {
+    let response = await client.post(endpoint[2], {message, listingId});
+    return response;
+}
 
 
 export default {

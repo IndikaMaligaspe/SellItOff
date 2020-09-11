@@ -21,8 +21,9 @@ import AuthContext from '../auth/context';
 function MessagesScreen({navigation}) {
     const [refreshing, setRefreshing] = useState(false);
     const getMessagesApi = useApi(messagesApi.getMessages);
+    const deleteMessageApi = useApi(messagesApi.deleteMessage);
     const {user} = useContext(AuthContext);
-    // const [messages, setMessages] = useState();
+    const [messages, setMessages] = useState();
     useEffect(() => {
         getMessagesApi.request(user);
      }, [])
@@ -36,7 +37,8 @@ function MessagesScreen({navigation}) {
     }
 
     const handleDelete = message =>{
-        setMessages(messages.filter((m) => m.id !== message.id));
+        deleteMessageApi.request(message._id);
+        refresh();
     };
 
     const handleNoData = () => {
@@ -58,6 +60,7 @@ function MessagesScreen({navigation}) {
                         <ListComponent
                             title={item.fromUser.name}
                             subtitle = {item.content}
+                            keyExtractor = {item.id}
                             image={{uri:item.fromUser.images[0].url}}
                             ImageComponent={<IconComponent 
                                                     name="account"
