@@ -12,16 +12,16 @@ function Card(props) {
         <TouchableHighlight 
             underlayColor={colors.lightBackground}
             onPress={props.onPress}>
-            <View style={styles.container}>
-                <Image
+            <View style={[styles.container, props.viewStyle]}>
+                {props.imageURL && <Image
                  style = {styles.image}
                  preview={{uri:props.thumbnailURL}}
                  tint="light"
                  uri={props.imageURL}
-                 /> 
+                />} 
                  <View style={styles.textContainer}>
-                    <AppText style={styles.title}>{props.title}</AppText>
-                    <AppText style={styles.subtitle}>{props.subtitle}</AppText>
+                    <AppText style={[styles.title, props.titleStyle]}>{props.title}</AppText>
+                    <AppText style={[styles.subtitle,props.subtitleStyle]}>{props.subtitle}</AppText>
                 </View>
             </View>
         </TouchableHighlight>
