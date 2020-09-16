@@ -8,7 +8,7 @@ import FooterNavigator from './app/Navigators/FooterNavigator';
 import { NavigationContainer } from '@react-navigation/native';
 import navigationtheme from './app/Navigators/navigationtheme';
 import { navigationRef } from './app/Navigators/rootNavigation';
-import ChatScreen from './app/Screens/ChatScreen'
+import ChatNavigation from './app/Navigators/ChatNavigation';
 
 
 
@@ -29,7 +29,9 @@ export default function App() {
     <AuthContext.Provider value={{user, setUser}}>
       <NavigationContainer ref={navigationRef} theme={navigationtheme}>
         {/* {user? <FooterNavigator /> : <AuthNavigator/>} */}
-        <ChatScreen></ChatScreen>
+        {/* <ChatScreen></ChatScreen> */}
+        {/* <AppImageBrowser></AppImageBrowser> */}
+        <ChatNavigation></ChatNavigation>
       </NavigationContainer>
     </AuthContext.Provider>
   );

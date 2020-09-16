@@ -22,6 +22,9 @@ function Card(props) {
                  <View style={styles.textContainer}>
                     <AppText style={[styles.title, props.titleStyle]}>{props.title}</AppText>
                     <AppText style={[styles.subtitle,props.subtitleStyle]}>{props.subtitle}</AppText>
+                    {props.images && <Image
+                        source={{uri:props.images[0].url}}
+                    />}
                 </View>
             </View>
         </TouchableHighlight>
@@ -34,11 +37,13 @@ const styles = StyleSheet.create({
         width:350,
         borderRadius:20,
         overflow:'hidden',
+        // marginLeft:5,
     },
     image:{
         width:'100%',
         height:200,
     },
+
     subtitle:{
         color:colors.primary,
         fontSize:20,

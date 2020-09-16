@@ -10,7 +10,9 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 
 
-function ImageInput({imageUri, onChangeImage, ...props}) {
+function ImageInput({imageUri,width=60, height=60,
+                    size=60,icon="camera",  
+                    onChangeImage, ...props}) {
     console.log(imageUri);
     const selectImage = async () =>{
         try{
@@ -36,7 +38,7 @@ function ImageInput({imageUri, onChangeImage, ...props}) {
         }
     }
   return (
-   <TouchableWithoutFeedback onPress={()=>handlePress()}>   
+   <TouchableWithoutFeedback  onPress={()=>handlePress()}>   
         <View style={styles.container}>
             {imageUri && <Image 
                 source={{uri:imageUri}}
@@ -44,8 +46,10 @@ function ImageInput({imageUri, onChangeImage, ...props}) {
             />}
             {!imageUri && 
                 <IconComponent
-                    name="camera"
-                    size={60}
+                    name={icon}
+                    size={size}
+                    width={width}
+                    height={height}
                     color={colors.darkBackground}
                     backgroundColor={colors.dullbackgraound}
                     borderRadious={8}
@@ -58,8 +62,8 @@ function ImageInput({imageUri, onChangeImage, ...props}) {
 
 const styles = StyleSheet.create({
   container: {
-    width:60,
-    height:60,
+    width:50,
+    height:50,
     borderRadius:15,
     justifyContent:"center",
     alignItems:"center",

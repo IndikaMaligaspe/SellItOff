@@ -9,4 +9,7 @@ export default  {
     logout:'#ffe66d',
     mediumGrey:'#4a4846',
     lightGrey:'#c7c1c1',
+    chatBackgroundProminent:'#b0e6a8',
+    chatBackgroundPlain:'#fff',
+    darkText:'#000',
 }

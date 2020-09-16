@@ -6,7 +6,8 @@ import AppErrorMessage from './AppErrorMessage';
 import ImageInputList from '../NativeComponents/ImageInputList';
 import ImageInput from '../NativeComponents/ImageInput';
 
-function AppFormImagePicker({fieldName, multiImage=false}) {
+function AppFormImagePicker({fieldName,width, height,
+                            size,icon, multiImage=false}) {
     
   const scroll = useRef();
 //   scroll.current.scrollToEnd();
@@ -24,7 +25,7 @@ function AppFormImagePicker({fieldName, multiImage=false}) {
   }
   
   return (
-    <View>
+    <View style={styles.container}>
         <ScrollView ref={scroll} 
             horizontal 
             onContentSizeChange={()=>{scroll.current.scrollToEnd()}}>
@@ -32,6 +33,10 @@ function AppFormImagePicker({fieldName, multiImage=false}) {
               imageUris={imageUris}
               onAddImage={(uri)=>onAddImage(uri)}
               onRemoveImage={(uri)=>onRemoveImage(uri)}
+              width={width}
+              height={height}
+              size={size}
+              icon={icon}
               >
               </ImageInputList>
 
@@ -43,7 +48,8 @@ function AppFormImagePicker({fieldName, multiImage=false}) {
 }
 
 const styles = StyleSheet.create({
-  container: {}
+  container: {
+  }
 });
 
 export default AppFormImagePicker;

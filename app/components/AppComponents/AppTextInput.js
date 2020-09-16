@@ -5,7 +5,7 @@ import {MaterialCommunityIcons} from '@expo/vector-icons';
 
 import defaultStyles from '../../configs/styles'
 
-export default function AppTextInput({ backgroundColor, color,  name, placeholder, size, width,style,   ... otherProps  }) {
+export default function AppTextInput({ backgroundColor, color,  name, placeholder, size, width,style,flex=1,   ... otherProps  }) {
 
     return (
         <View style={[styles.container]}>
@@ -15,7 +15,7 @@ export default function AppTextInput({ backgroundColor, color,  name, placeholde
                 color={color}
                 backgroundColor={backgroundColor}
             />            
-            <TextInput style={[defaultStyles.text, {flex:1}]}
+            <TextInput style={[defaultStyles.text, {flex:flex}]}
               placeholder={placeholder}
               { ... otherProps}>
               
