@@ -11,16 +11,16 @@ import routes from './routes';
 const Stack = createStackNavigator();
 export default function ChatNavigation() {
     return (
-        <Stack.Navigator initialRouteName={"ChatScreen"}>
+        <Stack.Navigator initialRouteName={routes.CHAT_SCREEN}>
             <Stack.Screen
-                name={"ChatScreen"}
+                name={routes.CHAT_SCREEN}
                 component={ChatScreen}
                 options={{
                 title:"Chats"      
             }} />
 
             <Stack.Screen             
-                name={"AppImageBrowser"}
+                name={routes.CHAT_IMAGE_BROWSER}
                 component={ImageBrowser}
                 options={{
                 title:"Image Selection"      

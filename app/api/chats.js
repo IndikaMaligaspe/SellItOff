@@ -20,9 +20,7 @@ const sendChatMessage = async (data) =>{
     let response = {}
     try {
       response = await client.post(endpoint[0],form);
-    //   console.log(response)   
     } catch (error) {
-        // console.log(error);
     }
     return response;
 }

@@ -48,6 +48,10 @@ function MessagesScreen({navigation}) {
         Alert.alert(`Hi, ${user.name}`,'Your message box is empty',[{text:'OK', onPress:handleNoData}])
         return <View></View>
     }
+
+    const loadChats =(item) =>{
+       navigation.navigate(routes.CHAT_SCREEN,item);
+    }
     return (
         <View style={styles.container}>
             <FlatList
@@ -67,7 +71,7 @@ function MessagesScreen({navigation}) {
                                                     size={40}
                                                     color={colors.darkBackground} 
                                                 />}
-                            onPress={()=> console.log(item)}
+                            onPress={()=> loadChats(item)}
                             showCheveron={true}                        
                             />
                     </Swipeable>

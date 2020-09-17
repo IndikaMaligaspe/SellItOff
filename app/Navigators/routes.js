@@ -9,6 +9,8 @@ export default Object.freeze ({
     PRODUCT_LIST: 'Product_List',
     PRODUCT_DETAILS: 'Prouct_Detail',
     MYLISTINGS:'MyListings',
-
-
+    CHAT_NAVIGATION:'ChatNavigation',
+    CHAT_SCREEN:'ChatScreen',
+    CHAT_IMAGE_BROWSER:'AppImageBrowser',
+    FOOTER_TABS:'FooterNavigation'
 });

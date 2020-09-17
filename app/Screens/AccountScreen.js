@@ -46,7 +46,7 @@ export default function AccountScreen({navigation}) {
    const handleLogout = () =>{
       logOut()
     }
-    console.log(user);
+    // console.log(user);
     return (
         <Screen style={styles.container}>
             <View>

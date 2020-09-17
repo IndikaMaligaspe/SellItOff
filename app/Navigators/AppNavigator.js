@@ -10,33 +10,32 @@ import MyListingScreen from '../Screens/MyListingsScreen'
 import routes from './routes'
 import ChatScreen from "../Screens/ChatScreen";
 import ImageBrowser  from "../Screens/ImageBrowserScreen";
+import FooterNavigator from "./FooterNavigator";
 
 const Stack = createStackNavigator();
-export default AccountNavigations =() =>{
+export default AppNavigator =() =>{
     return (
-        <Stack.Navigator initialRouteName={routes.WELCOME}>
+        <Stack.Navigator initialRouteName={routes.FOOTER_TABS}>
             <Stack.Screen  
-                name={routes.ACCOUNT} 
-                component={AccountScreen}  
+                name={routes.FOOTER_TABS} 
+                component={FooterNavigator}  
                 options={{
                     title: "",
                     headerShown: false,
                 }}
             />
-            <Stack.Screen 
-                name={routes.MESSAGES} 
-                component={MessagesScreen} 
+            <Stack.Screen
+                name={routes.CHAT_SCREEN}
+                component={ChatScreen}
                 options={{
-                    title: "",
-                    headerShown: false,
-                }}/>
-            <Stack.Screen 
-                name={routes.MYLISTINGS} 
-                component={MyListingScreen} 
+                title:"Chats"      
+            }} />
+            <Stack.Screen             
+                name={routes.CHAT_IMAGE_BROWSER}
+                component={ImageBrowser}
                 options={{
-                    title: "",
-                    headerShown: false,
-                }}/>
+                title:"Images Selection"      
+            }} />
         </Stack.Navigator>
     )
 }

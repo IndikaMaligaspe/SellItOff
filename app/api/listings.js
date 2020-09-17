@@ -12,7 +12,7 @@ const getMyListings = async (userId)=>{
             }
     };   
     const result = await client.get(endpoint[1], data);
-    console.log(result.data);
+    // console.log(result.data);
     if (!result.ok)return;
     return result;
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import colors from '../../configs/colors'
 import AppTextInput from './AppTextInput'
 import IconComponent from './IconComponent'
 
@@ -23,6 +24,7 @@ export default function AppChatMessage({handleSubmit}) {
                     height={40}
                     borderRadious={1}
                     imagePicker={handleSelect}
+                    color={colors.mediumGrey}
                 />
         </View>
     )

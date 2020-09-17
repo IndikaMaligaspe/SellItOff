@@ -8,7 +8,7 @@ import AppText from './AppText'
 
 export default function ListPickerItem({item, onPress}) {
     const backgroundColor = item.backgroundColor
-    console.log(`ITEM - ${item}`);
+    // console.log(`ITEM - ${item}`);
     return (
         <View>
             <TouchableOpacity onPress={onPress}>

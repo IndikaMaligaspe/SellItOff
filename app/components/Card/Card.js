@@ -7,7 +7,7 @@ import AppText from '../AppComponents/AppText'
 import colors from '../../configs/colors'
 
 function Card(props) {
-    console.log(props.imageURL)
+    // console.log(props.imageURL)
     return (
         <TouchableHighlight 
             underlayColor={colors.lightBackground}

@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native'
 import {ImageBrowser} from 'expo-image-picker-multiple'
 
 
-export default function AppImageBrowser(props) {
+export default function AppImageBrowser({setImages, max}) {
 
     const imagesCallback =  (callback) => {
       let cPhoto = []
@@ -15,7 +15,7 @@ export default function AppImageBrowser(props) {
             type: "image/png",
         });
       });
-        props.setImages(cPhoto);
+        setImages(cPhoto);
       });
     };
     
@@ -35,10 +35,10 @@ export default function AppImageBrowser(props) {
     const noCameraPermissionComponent = <Text style={styles.emptyStay}>No access to camera</Text>;
 
     return (
-        <View style={[ styles.container]}>
+        <View style={styles.container}>
             <View style={styles.fileBrowser}>
                 <ImageBrowser
-                max={props.max}
+                max={max}
                 onChange={updateHandler}
                 callback={imagesCallback}
                 renderSelectedComponent={renderSelectedComponent}
@@ -49,15 +49,11 @@ export default function AppImageBrowser(props) {
     )
 }
 const styles = StyleSheet.create({
-      chatStyle:{
-        flex:.15, 
-        width:"80%",
-        alignSelf:"center",
-      },
       container: {
         paddingTop: 25,
         flex:1,
         justifyContent:"center",
+        // backgroundColor:"red",
       },
       countBadge: {
         paddingHorizontal: 8.6,
@@ -79,6 +75,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
       },
       fileBrowser:{
+        // backgroundColor:"red",
           flex:1, 
       }
 

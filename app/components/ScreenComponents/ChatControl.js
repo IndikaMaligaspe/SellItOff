@@ -1,20 +1,17 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet,  View } from 'react-native'
 
 import navigation from '../../Navigators/rootNavigation'
 
-import {MaterialCommunityIcons} from '@expo/vector-icons'
-import { TextInput } from 'react-native'
-import AppTextInput from '../AppComponents/AppTextInput'
 import IconComponent from '../AppComponents/IconComponent'
-import AppFormField from '../AppComponents/Form/AppFormField'
 import AppForm from '../AppComponents/Form/AppForm'
-import AppFormImagePicker from '../AppComponents/Form/AppFormImagePicker'
 import AppChatMessage from '../AppComponents/AppChatMessage'
+import routes from '../../Navigators/routes'
+import colors from '../../configs/colors'
 
 export default function ChatControl({color="black", handleSubmit}) {
     const imagePicker = () =>{
-        navigation.navigate("AppImageBrowser");
+        navigation.navigate(routes.CHAT_IMAGE_BROWSER);
     }
     return (
         <View style={styles.container}>
@@ -31,6 +28,7 @@ export default function ChatControl({color="black", handleSubmit}) {
                     height={40}
                     borderRadious={1}
                     imagePicker={imagePicker}
+                    color={colors.mediumGrey}
                 />
                 <IconComponent 
                     name="camera"
@@ -38,6 +36,7 @@ export default function ChatControl({color="black", handleSubmit}) {
                     width={40}
                     height={40}
                     borderRadious={1}
+                    color={colors.mediumGrey}
                 />
                 <View style={styles.textContainer}>
                 <AppChatMessage
@@ -50,7 +49,7 @@ export default function ChatControl({color="black", handleSubmit}) {
 
 const styles = StyleSheet.create({
     container:{
-        flex:1,
+        // flex:1,
         flexDirection:"row",
         width:'100%',
         alignItems:'center'

@@ -1,11 +1,10 @@
-import React, {useEffect} from 'react';
+import React  from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import {MaterialCommunityIcons} from '@expo/vector-icons';
 
 import AccountNavigation from './AccountNavigation';
 import ListingEditScreen from '../Screens/ListingEditScreen';
-import NewListingButton from './NewListingButton';
 import ProductListingNavigator from './ProductListingNavigator';
 import navigation from '../Navigators/rootNavigation';
 
@@ -38,14 +37,12 @@ export default FooterNavigator= () =>{
             />
             <bottomTab.Screen
                 name={routes.LIST_EDIT} 
-                component={ListingEditScreen}  
-                options={({navigation}) => ({
-                    tabBarButton:()=>( 
-                        <NewListingButton 
-                            onPress={() =>navigation.navigate(routes.LIST_EDIT)}
-                            />)
-                })} 
-                
+                component={ListingEditScreen} 
+                options={{
+                    title: "Add",
+                    headerShown: false,
+                    tabBarIcon:({size, color})=><MaterialCommunityIcons name="plus" size={size} color={color}/>,
+                }}  
             />
             <bottomTab.Screen
                 name={routes.ACCOUNT}
@@ -56,8 +53,6 @@ export default FooterNavigator= () =>{
                     tabBarIcon:({size, color})=><MaterialCommunityIcons name="account" size={size} color={color}/>,
                 }} 
             />
-
-            
         </bottomTab.Navigator>    
     )
 }

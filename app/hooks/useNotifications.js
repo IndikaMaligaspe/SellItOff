@@ -18,7 +18,7 @@ const registerForPushNotifications = async () => {
        if(!permission.granted) return;
 
        const token = await Notifications.getExpoPushTokenAsync();
-       console.log(token);
+    //    console.log(token);
        expoPushTokensApi.register(token);
     } catch (error) {
         console.log("Error getting permissions for notifications ->",error);        

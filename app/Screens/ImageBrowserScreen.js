@@ -10,32 +10,32 @@ import chatAPI from '../api/chats';
 import useApi from '../hooks/useApi';
 
 
-const messageMeta  = {
-  _id: "5f5c0f4ce45c060a70e27c7f",
-  content: "Also what is your last price ?",
-  dateTime: "2020-09-11T23:59:08.870Z",
-  fromUser:  {
-      _id: "5f583aa8570bc8419072f733",
-      // _id: "5f56fb77ddbda93564b7248b",
-      images:  [
-          {
-              url: "http://192.168.1.6:9000/assets/undefined_thumb.jpg",
-          },
-          ],
-      name: "mosh",
-  },
-  listingId: "5f58c9c402eb0b3054107041",
-  toUser:  {
-  _id: "5f56fb77ddbda93564b7248b",
-  // _id: "5f583aa8570bc8419072f733",
-  images:  [
-       {
-      url: "http://192.168.1.6:9000/assets/40be7b80ab4ef3c5d9a4358fad37d83e_thumb.jpg",
-      },
-  ],
-  name: "indika",
-  },
-}
+// const messageMeta  = {
+//   _id: "5f5c0f4ce45c060a70e27c7f",
+//   content: "Also what is your last price ?",
+//   dateTime: "2020-09-11T23:59:08.870Z",
+//   fromUser:  {
+//       _id: "5f583aa8570bc8419072f733",
+//       // _id: "5f56fb77ddbda93564b7248b",
+//       images:  [
+//           {
+//               url: "http://192.168.1.6:9000/assets/undefined_thumb.jpg",
+//           },
+//           ],
+//       name: "mosh",
+//   },
+//   listingId: "5f58c9c402eb0b3054107041",
+//   toUser:  {
+//   _id: "5f56fb77ddbda93564b7248b",
+//   // _id: "5f583aa8570bc8419072f733",
+//   images:  [
+//        {
+//       url: "http://192.168.1.6:9000/assets/40be7b80ab4ef3c5d9a4358fad37d83e_thumb.jpg",
+//       },
+//   ],
+//   name: "indika",
+//   },
+// }
 
 
 export default function ImageBrowserScreen() {
@@ -76,7 +76,7 @@ export default function ImageBrowserScreen() {
             </View>
             <View style={styles.chatStyle}>
                 <AppChatMessage
-                 handleSubmit={handleSubmit} />
+                  handleSubmit={handleSubmit} />
             </View>
         </View>
 
@@ -84,7 +84,7 @@ export default function ImageBrowserScreen() {
 }
 const styles = StyleSheet.create({
       chatStyle:{
-        flex:.15, 
+        flex:.1, 
         width:"80%",
         alignSelf:"center",
       },

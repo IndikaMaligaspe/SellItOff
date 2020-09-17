@@ -16,7 +16,7 @@ function AppFormImagePicker({fieldName,width, height,
   const imageUris = values[fieldName]
 
   const onAddImage = (uri) => {
-    console.log(uri);
+    // console.log(uri);
     setFieldValue(fieldName, [...imageUris, uri]);
   }
 
