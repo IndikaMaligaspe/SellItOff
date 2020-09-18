@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { StyleSheet, View, Text, Alert } from 'react-native'
-import {ImageBrowser} from 'expo-image-picker-multiple'
 
 import AppChatMessage from '../components/AppComponents/AppChatMessage';
 import AppImageBrowser from '../components/AppComponents/AppImageBrowser';
@@ -38,19 +37,19 @@ import useApi from '../hooks/useApi';
 // }
 
 
-export default function ImageBrowserScreen() {
+export default function ImageBrowserScreen({route}) {
     const [photos, setPhotos] = useState([])
     const getChatApi = useApi(chatAPI.sendChatMessage);
     const emptyStayComponent = <Text style={styles.emptyStay}>Empty =(</Text>;
     const noCameraPermissionComponent = <Text style={styles.emptyStay}>No access to camera</Text>;
+    const messageData = route.params
 
-
-      const handleSubmit = async (message) =>{
+    const handleSubmit = async (message) =>{
         let data = {
           message:message.message,
-          fromUser:messageMeta.fromUser._id,
-          toUser:messageMeta.toUser._id,
-          listing:messageMeta.listingId,
+          fromUser:messageData.fromUser._id,
+          toUser:messageData.toUser._id,
+          listing:messageData.listingId,
           images:photos,
           
         }

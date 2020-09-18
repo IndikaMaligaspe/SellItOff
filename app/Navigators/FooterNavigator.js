@@ -15,7 +15,15 @@ import useNotifications from '../hooks/useNotifications';
 
 const bottomTab = createBottomTabNavigator()
 export default FooterNavigator= () =>{
-  useNotifications((notification) => {navigation.navigate(routes.ACCOUNT)});
+  useNotifications((notification) => {
+      data = notification.data;
+      if(data) {
+         if(data.screen === 'chat')
+         navigation.navigate(routes.ACCOUNT, {screen: routes.MESSAGES})
+      }else{
+        navigation.navigate(routes.ACCOUNT)}
+      } 
+  );
 
     return (
         <bottomTab.Navigator

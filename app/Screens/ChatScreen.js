@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, StyleSheet, View } from 'react-native';
+import { Alert, KeyboardAvoidingView, Keyboard, StyleSheet, View } from 'react-native';
 import { FlatList } from 'react-native';
 
 import Card from '../components/Card/Card';
@@ -19,21 +19,27 @@ export default function ChatScreen({route, navigation}) {
     const getChatApi = useApi(ChatsAPI.sendChatMessage);
     const [refreshing, setRefreshing] = useState(false);
     
+ 
     const { fromUser } = route.params;
     const { toUser } = route.params;
     const { listingId } = route.params;
+     
 
-    const fromUserId  =  fromUser._id;
-    const toUserId =  toUser._id;
+    const messageData = {
+      fromUser: fromUser,
+      toUser: toUser,
+      listingId: listingId,
+    }
 
 
     useEffect(() =>{
-      getChatByListingByBuyerAPI.request(listingId, toUserId,fromUserId);
+
+      getChatByListingByBuyerAPI.request(messageData.listingId, messageData.toUser._id,messageData.fromUser._id);
     },[]);
 
     const refreshData =() =>{
       setRefreshing(true);
-      getChatByListingByBuyerAPI.request(listingId, toUserId,fromUserId);
+      getChatByListingByBuyerAPI.request(messageData.listingId, messageData.toUser._id,messageData.fromUser._id);
       setRefreshing(false);
     }
 
@@ -57,6 +63,7 @@ export default function ChatScreen({route, navigation}) {
     return ( 
           <React.Fragment>
             <ActivityLoader visible={getChatByListingByBuyerAPI.loading} />
+           
             <View style={styles.container}>
                 <View style={{flex:1}}>
                     <FlatList 
@@ -89,22 +96,23 @@ export default function ChatScreen({route, navigation}) {
                       onRefresh={refreshData}                  
                       />
                   </View>
-                  <View style={styles.chatControl}>
-                    <ChatControl 
-                    handleSubmit={handleSubmit} />
-                  </View>
-            </View>
+                  <KeyboardAvoidingView 
+                    behavior={Platform.OS == "ios" ? "padding" : "height"}
+                    style={styles.chatControl}>
+                        <ChatControl 
+                        handleSubmit={handleSubmit} 
+                        messageData={messageData}/>
+                  </KeyboardAvoidingView>
+              </View>
           </React.Fragment>
     )
 }
 
 const styles = StyleSheet.create({
     chatControl:{
-      height:60, 
       backgroundColor:colors.chatBackgroundPlain,
       borderTopWidth: 1,
       borderTopColor:colors.lightGrey,
-
     },
     container: {
       width:'100%',

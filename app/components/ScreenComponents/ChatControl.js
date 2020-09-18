@@ -9,18 +9,12 @@ import AppChatMessage from '../AppComponents/AppChatMessage'
 import routes from '../../Navigators/routes'
 import colors from '../../configs/colors'
 
-export default function ChatControl({color="black", handleSubmit}) {
+export default function ChatControl({messageData, color="black", handleSubmit}) {
     const imagePicker = () =>{
-        navigation.navigate(routes.CHAT_IMAGE_BROWSER);
+        navigation.navigate(routes.CHAT_IMAGE_BROWSER, messageData);
     }
     return (
         <View style={styles.container}>
-            <AppForm
-             initialValues={{
-                message:"",
-                imageList:[],
-            }}
-            >
                  <IconComponent 
                     name="plus"
                     size={80}
@@ -42,20 +36,17 @@ export default function ChatControl({color="black", handleSubmit}) {
                 <AppChatMessage
                     handleSubmit={handleSubmit} />
                 </View>
-        </AppForm>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     container:{
-        // flex:1,
         flexDirection:"row",
         width:'100%',
         alignItems:'center'
     },
     textContainer:{
-        // flexDirection:'column', 
         width:'65%'
     }
 
