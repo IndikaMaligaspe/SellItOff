@@ -53,7 +53,6 @@ export default function ImageBrowserScreen({route}) {
           images:photos,
           
         }
-        // console.log(data);
         try {
           let response = await getChatApi.request(data);  
           navigation.navigate("ChatScreen");

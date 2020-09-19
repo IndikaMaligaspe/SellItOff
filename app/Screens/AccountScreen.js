@@ -55,8 +55,14 @@ export default function AccountScreen({navigation}) {
                     paddingBottom:10,
                     marginTop:30,
                 }}>
+                {
+                    user.images.length != 0 &&
                     <ListComponent
                     image={{uri:user.images[0].url}}
+                    title={user.name}
+                    subtitle={user.email} />
+                }   
+                <ListComponent
                     title={user.name}
                     subtitle={user.email} />
                 </View>

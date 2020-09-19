@@ -4,16 +4,20 @@ import { View, Image, StyleSheet, TouchableHighlight, ViewBase } from 'react-nat
 import AppText from '../AppComponents/AppText'
 import colors from '../../configs/colors';
 import IconComponent from '../AppComponents/IconComponent';
+import { NONE } from 'apisauce';
 
 export default function ListComponent(props) {
   return (
    <TouchableHighlight underlayColor={colors.lightBackground} onPress={props.onPress}>  
         <View style={styles.container}>
-            {props.image && <Image 
-                source={props.image}
-                style={styles.image}
-            />}
-            {!props.image && props.ImageComponent}
+            {(!props.image || props.image.uri===null) ?  
+               (props.ImageComponent) 
+               : 
+               (<Image 
+                    source={props.image}
+                    style={styles.image}
+            />)
+            }
             <View style={styles.imageTextContainer}>
                 <AppText style={styles.nameText}>{props.title}</AppText>
                 {props.subtitle && <AppText style={styles.listingsText}>{props.subtitle}</AppText>}

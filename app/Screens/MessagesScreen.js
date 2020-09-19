@@ -56,7 +56,7 @@ function MessagesScreen({navigation}) {
         <View style={styles.container}>
             <FlatList
                 data={getMessagesApi.data}
-                keyExtractor={(message)=>message._id}
+                keyExtractor={(message, index)=>index.toString()}
                 renderItem={({item})=>(
                     <Swipeable renderRightActions={()=> 
                         <ListItemDeleteAction 
@@ -64,11 +64,11 @@ function MessagesScreen({navigation}) {
                         <ListComponent
                             title={item.fromUser.name}
                             subtitle = {item.content}
-                            keyExtractor = {item.id}
-                            image={{uri:item.fromUser.images[0].url}}
+                            keyExtractor = {(item, index)=> index.toString() }
+                            image={{uri:((item.fromUser.images.length===0)?null:item.fromUser.images[0].url)}}
                             ImageComponent={<IconComponent 
                                                     name="account"
-                                                    size={40}
+                                                    size={70}
                                                     color={colors.darkBackground} 
                                                 />}
                             onPress={()=> loadChats(item)}
