@@ -10,6 +10,7 @@ import navigationtheme from './app/Navigators/navigationtheme';
 import { navigationRef } from './app/Navigators/rootNavigation';
 import ChatNavigation from './app/Navigators/ChatNavigation';
 import AppNavigator from './app/Navigators/AppNavigator';
+import CameraComponent from './app/components/AppComponents/NativeComponents/CameraComponent';
 
 
 
@@ -29,10 +30,11 @@ export default function App() {
   return (
     <AuthContext.Provider value={{user, setUser}}>
       <NavigationContainer ref={navigationRef} theme={navigationtheme}>
-        {user? <AppNavigator /> : <AuthNavigator/>}
+        {/* {user? <AppNavigator /> : <AuthNavigator/>} */}
         {/* <ChatScreen></ChatScreen> */}
         {/* <AppImageBrowser></AppImageBrowser> */}
         {/* <ChatNavigation></ChatNavigation> */}
+        <CameraComponent/>
       </NavigationContainer>
     </AuthContext.Provider>
   );

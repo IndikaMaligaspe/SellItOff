@@ -3,7 +3,7 @@ import cache from '../utlity/cache'
 import authStore from '../auth/store'
 
 const apiClient = create({
-    baseURL: 'http://192.168.1.6:9000/api'
+    baseURL: 'http://192.168.1.2:9000/api'
 });
 
 apiClient.addAsyncRequestTransform(async (request) => {

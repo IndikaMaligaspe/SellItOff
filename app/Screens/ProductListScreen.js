@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import {StyleSheet,FlatList} from 'react-native'
 
 import ActivityLoader from '../components/AppComponents/ActivityLoader'
@@ -14,9 +14,16 @@ import useApi from '../hooks/useApi'
 
 export default function ProductListScreen({navigation}) {
     const getListingsApi = useApi(listingsApi.getListings)
+    const [refreshing, setRefreshing] = useState(false)
     useEffect(() => {
         getListingsApi.request();
     }, [])
+
+    const refresh =() =>{
+        setRefreshing(true);
+        getListingsApi.request()
+        setRefreshing(false);
+    }
     // console.log(getListingsApi.data); 
     return (
         <React.Fragment>
@@ -25,7 +32,7 @@ export default function ProductListScreen({navigation}) {
                 {getListingsApi.error && (
                     <React.Fragment>
                         <AppText>Sorry , could not load data.</AppText> 
-                        <AppButton title="Retry" onPress={getListing}/>
+                        <AppButton title="Retry" onPress={refresh}/>
                     </React.Fragment>
                 )}
                 

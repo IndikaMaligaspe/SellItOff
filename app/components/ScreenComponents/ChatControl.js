@@ -10,7 +10,7 @@ import routes from '../../Navigators/routes'
 import colors from '../../configs/colors'
 
 export default function ChatControl({messageData, color="black", handleSubmit}) {
-    const imagePicker = () =>{
+    const onSelect = () =>{
         navigation.navigate(routes.CHAT_IMAGE_BROWSER, messageData);
     }
     return (
@@ -21,7 +21,7 @@ export default function ChatControl({messageData, color="black", handleSubmit}) 
                     width={40}
                     height={40}
                     borderRadious={1}
-                    imagePicker={imagePicker}
+                    onSelect={onSelect}
                     color={colors.mediumGrey}
                 />
                 <IconComponent 

@@ -37,7 +37,7 @@ const postlisting = (data, OnUploadProgress) => {
     // console.log(formData);
     return client.post(endpoint[0], formData,{
                         onUploadProgress: (progress)=> 
-                            OnUploadProgress(progress.loaded / progress.total)});
+                        OnUploadProgress(progress.loaded / progress.total)});
 }
 export default {
     getListings, 

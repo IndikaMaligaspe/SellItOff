@@ -28,7 +28,7 @@ export default function AppChatMessage({handleSubmit}) {
                         width={40}
                         height={40}
                         borderRadious={1}
-                        imagePicker={handleSelect}
+                        onSelect={handleSelect}
                         color={colors.mediumGrey}
                     />
                 </TouchableWithoutFeedback>
